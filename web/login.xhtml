@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/html1/DTD/html1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/html"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ADSI  867263</title>
+        <!-- BOOTSTRAP STYLES-->
+        <link href="assets/css/bootstrap.css" rel="stylesheet" />
+        <!-- FONTAWESOME STYLES-->
+        <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+        <link href="assets/css/custom.css" rel="stylesheet" />
+        <!-- GOOGLE FONTS-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row text-center ">
+                <div class="col-md-12">
+                    <br /><br />
+                    <h2>ADSI  867263 : Login</h2>
+
+                    <h5>( Login yourself to get access )</h5>
+                    <br />
+                </div>
+            </div>
+            <div class="row ">
+
+               
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>   Enter Details To Login </strong>  
+                        </div>
+                        <div class="panel-body">
+                             <c:if test="#{(controladorUsuario.estado)==2}">
+                                <div class="alert alert-succes">Ya puede iniciar sesión</div>
+                            </c:if>
+                            <h:form>
+                                <br />
+                                 <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <h:inputText class="form-control" value="#{controladorUsuario.usulogin}"  p:placeholder="Name User" />
+                                </div>
+                                
+                                
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                    <h:inputSecret class="form-control" value="#{controladorUsuario.usupassword}"  p:placeholder="Enter Password" />
+                                </div>
+
+                                <h:commandButton value="Login Now" class="btn btn-primary"  action="#{controladorUsuario.login()}"/> 
+
+                                <hr />
+                                Not register ?  <h:link value="click here" outcome="registeration"/>  
+                            </h:form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- METISMENU SCRIPTS -->
+        <script src="assets/js/jquery.metisMenu.js"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="assets/js/custom.js"></script>
+
+    </h:body>
+</html>

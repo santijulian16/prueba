@@ -1,0 +1,373 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/html1/DTD/xxhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/html"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ADSI  867263</title>
+        <!-- BOOTSTRAP STYLES-->
+        <link href="../../assets/css/bootstrap.css" rel="stylesheet" />
+        <!-- FONTAWESOME STYLES-->
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- MORRIS CHART STYLES-->
+        <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+        <link href="../assets/css/custom.css" rel="stylesheet" />
+        <!-- GOOGLE FONTS-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <f:event listener="#{controladorUsuario.miraSession()}" type="preRenderView"   />
+    </h:head>
+    <h:body>
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.xhtml">ADSI-CSF</a> 
+                </div>
+                <div style="color: white;
+                     padding: 15px 50px 5px 50px;
+                     float: right;
+                     font-size: 16px;"> #{currentDate} <a href="login.xhtml" class="btn btn-danger square-btn-adjust">Log Out</a> </div>
+            </nav>   
+            <!-- /. NAV TOP  -->
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li class="text-center">
+                            <img src="../assets/img/find_user.png" class="user-image img-responsive"/>
+                        </li>
+
+                        <li>
+                            <a href="#"  class="active-menu"  ><i class="fa fa-user fa-3x"></i> User <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <h:link value="List User" outcome="index"/>
+
+                                </li>
+                                <li>
+                                    <h:link value="New User" outcome="newUser"/>
+
+
+
+                                </li>
+
+                            </ul>
+                        </li>  
+
+
+
+                        <li>
+                            <a href="#"   ><i class="fa fa-car fa-3x"></i> Cars <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <h:link value="List Cars" outcome="listCart"/>
+                                </li>
+                                <li>
+                                    <h:link value="New Cars" outcome="newCars"/>
+                                </li>
+
+                            </ul>
+                        </li> 
+
+
+                        <li>
+                            <a href="#"   ><i class="fa fa-spinner fa-3x"></i> Categories <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <h:link value="List Categories" outcome="listCategories"/>
+                                </li>
+                                <li>
+                                    <h:link value="New Categories" outcome="newCategories"/>
+                                </li>
+
+                            </ul>
+                        </li> 
+
+
+                        <li>
+                            <a href="#"   ><i class="fa fa-facebook fa-3x"></i> Roles <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <h:link value="List Roles" outcome="listRoles"/>
+                                </li>
+                                <li>
+                                    <h:link value="New Roles" outcome="newRoles"/>
+                                </li>
+
+                            </ul>
+                        </li> 
+
+
+
+                        <li>
+                            <h:link value="My Data" outcome="misDatos"> <i class="fa fa-angellist fa-3x"></i>  </h:link>
+
+                        </li>
+                        <li>
+                            <h:link value="Log Out" outcome="logOut"> <i class="fa fa-circle-o fa-3x"></i>  </h:link>
+                        </li>				
+
+
+
+                    </ul>
+
+                </div>
+
+            </nav>   
+            <!-- /. NAV SIDE  -->
+            <div id="page-wrapper" >
+                <div id="page-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Admin User</h2>   
+                            <h5>Welcome #{controladorUsuario.usuarioLogin.datnombre}&nbsp;#{controladorUsuario.usuarioLogin.datapellido} , How was your day? </h5>
+                        </div>
+                    </div>              
+                    <!-- /. ROW  -->
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-6">           
+                            <div class="panel panel-back noti-box">
+                                <span class="icon-box bg-color-red set-icon">
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                <div class="text-box" >
+                                    <p class="main-text">#{controladorUsuario.contarUsuarios()} New</p>
+                                    <p class="text-muted">User</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!-- /. ROW  -->
+                    <hr />                
+
+
+                    <!-- /. ROW  -->
+                    <div class="row" >
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            
+                               <c:if test="#{(controladorUsuario.estado)==1}">
+                                <div class="alert alert-info">Usuario Actualizado</div>
+
+                            </c:if>
+
+                            <c:if test="#{(controladorUsuario.estado)==2}">
+                                <div class="alert alert-info">Usuario Registrado</div>
+
+                            </c:if>
+
+                            <c:if test="#{(controladorUsuario.estado)==3}">
+                                <div class="alert alert-warning">Usuario Eliminado Correctamente </div>
+
+                            </c:if>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    System Users
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Document Type</th>
+                                                    <th>Document</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Username</th>
+                                                    <th>Update</th>
+                                                    <th>Delete</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <c:forEach items="#{controladorUsuario.consulTodos()}" var="lista">
+
+                                                    <c:if test="#{controladorUsuario.miraUsuarioLog(lista.usuid.usulogin)}" >
+                                                        <tr>
+                                                            <td>#{lista.datipoid}</td>
+                                                            <td>#{lista.datnumeroid}</td>
+                                                            <td>#{lista.datnombre}</td>
+                                                            <td>#{lista.datapellido}</td>
+                                                            <td>#{lista.usuid.usulogin}</td>
+                                                            <td align="center" >  <button class="fa fa-thumbs-down" data-toggle="modal" data-target="#myActualizar#{lista.datnumeroid}" ></button>   </td>
+                                                            <td align="center"> <button class="fa fa-users" data-toggle="modal" data-target="#myModal#{lista.datnumeroid}"   ></button> </td>
+
+                                                            <div class="modal fade" id="myModal#{lista.datnumeroid}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                            <h4 class="modal-title" id="myModalLabel">Eliminar Usuario</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Realmente quiere eliminar al usuario: #{lista.datnombre}&nbsp;#{lista.datapellido}?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <h:form>
+                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                                                                                <h:commandButton value="Elimiar" class="btn btn-danger" action="#{controladorUsuario.eliminarUsuario(lista )}" />
+
+
+                                                                            </h:form>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="modal fade" id="myActualizar#{lista.datnumeroid}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <h:form id="Actualizar#{lista.datid}">
+
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title" id="myModalLabel">Actualizar Usuario  #{lista.datnombre}&nbsp;#{lista.datapellido} </h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+
+
+                                                                                <br/>
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon"><i class="fa fa-circle-o-notch"  ></i></span>
+                                                                                    <h:inputText  class="form-control" id="nombre" value="#{lista.datnombre}" />
+                                                                                </div>
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+                                                                                    <h:inputText  class="form-control" id="apellido"  value="#{lista.datapellido}"   />
+                                                                                </div>
+
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon"><i class="fa fa-bomb"  ></i></span>
+                                                                                    <div class="form-group">
+                                                                                        <h:selectOneMenu value="#{lista.datipoid}"  id="tipoid" class="form-control"  >
+                                                                                            <f:selectItem itemValue="Cedula" itemLabel="Cedula" />
+                                                                                            <f:selectItem itemValue="Tarjeta Identidad" itemLabel="Tarjeta Identidad" />
+                                                                                            <f:selectItem itemValue="Cedula Extranjeria" itemLabel="Cedula Extranjeria" />
+                                                                                            <f:selectItem itemValue="Other" itemLabel="Other" />
+                                                                                        </h:selectOneMenu>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon">#</span>
+                                                                                    <h:inputText class="form-control"   id="numeroid" value="#{lista.datnumeroid}"   />
+                                                                                </div>
+
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon"><i class="fa fa-paper-plane-o"></i></span>
+                                                                                    <h:inputText class="form-control" id="telefono"  value="#{lista.datelefono}"   />
+                                                                                </div>
+
+
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon">@</span>
+                                                                                    <h:inputText class="form-control" id="correo" value="#{lista.datcorreo}"   />
+                                                                                </div>
+
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                                                    <h:inputText class="form-control"  id="actUsuario"  value="#{lista.usuid.usulogin}"   />
+                                                                                </div>
+
+
+                                                                                <div class="form-group input-group">
+                                                                                    <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                                                                    <h:inputSecret class="form-control" id="actClave" value="#{lista.usuid.usupassword}"   />
+                                                                                </div>
+
+
+
+                                                                                <hr />
+
+
+
+
+
+
+                                                                            </div>
+                                                                            <div class="modal-footer">
+
+                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                                                                                <h:commandButton value="Actualizar" class="btn btn-success" action="#{controladorUsuario.actualizarUsuarios(lista)}" >
+                                                                                    <f:param name="formulario" value="Actualizar#{lista.datid}"/> 
+                                                                                    
+                                                                                </h:commandButton>
+
+
+
+
+
+                                                                            </div>
+                                                                        </h:form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+
+
+
+                                                        </tr>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                        <h:form>
+                                            <h:commandButton style="width: 30px; height: 30px;" image="../assets/img/Microsoft_Excel_2013_logo.svg.png" action="#{controladorUsuario.XLSX()}"></h:commandButton>
+                                            <h:commandButton style="width: 30px; height: 30px;" image="../assets/img/Pdf_by_mimooh.svg" action="#{controladorUsuario.PDF()}"></h:commandButton>
+                                            <h:commandButton style="width: 30px; height: 30px;" image="../assets/img/microsoft-word-2013-23-535x535.png" action="#{controladorUsuario.DOCX()}"></h:commandButton>
+                                            <h:commandButton style="width: 30px; height: 30px;" image="../assets/img/unnamed.png" action="#{controladorUsuario.PPT()}"></h:commandButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- /. ROW  -->           
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="../assets/js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <!-- METISMENU SCRIPTS -->
+        <script src="../assets/js/jquery.metisMenu.js"></script>
+        <!-- MORRIS CHART SCRIPTS -->
+        <script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
+        <script src="../assets/js/morris/morris.js"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="../assets/js/custom.js"></script>
+
+    </h:body>
+</html>
